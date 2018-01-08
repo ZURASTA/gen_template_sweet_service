@@ -36,10 +36,8 @@ defmodule <%= @project_name_camel_case %>.API.Mixfile do
     #   {:my_app, in_umbrella: true}
     #
     # Type "mix help deps" for more examples and options
-    defp deps(false) do
-        [
-            { :<%= @project_name %>_service, path: "../<%= @project_name %>_service", only: :test }
-        ]
+    defp deps(false), do: deps(true) ++ [{ :<%= @project_name %>_service, path: "../<%= @project_name %>_service", only: :test }]
+    defp deps(true) do
+        []
     end
-    defp deps(true), do: []
 end

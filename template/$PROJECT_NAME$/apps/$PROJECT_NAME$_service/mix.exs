@@ -10,9 +10,11 @@ defmodule <%= @project_name_camel_case %>.Service.Mixfile do
             deps_path: "../../deps",
             lockfile: "../../mix.lock",
             elixir: "~> <%= Version.parse!(@elixir_version).major %>.<%= Version.parse!(@elixir_version).minor %>",
+            elixirc_paths: elixirc_paths(Mix.env),
             build_embedded: Mix.env == :prod,
             start_permanent: Mix.env == :prod,
-            deps: deps()
+            aliases: aliases(),
+            deps: deps(Mix.Project.umbrella?)
         ]
     end
 
@@ -25,6 +27,10 @@ defmodule <%= @project_name_camel_case %>.Service.Mixfile do
             extra_applications: [:logger]
         ]
     end
+
+    # Specifies which paths to compile per environment.
+    defp elixirc_paths(:test), do: ["lib", "test/support"]
+    defp elixirc_paths(_),     do: ["lib"]
 
     # Dependencies can be Hex packages:
     #
@@ -39,7 +45,18 @@ defmodule <%= @project_name_camel_case %>.Service.Mixfile do
     #   {:my_app, in_umbrella: true}
     #
     # Type "mix help deps" for more examples and options
-    defp deps do
+    defp deps(false), do: deps(true) ++ []
+    defp deps(true) do
+        []
+    end
+
+    # Aliases are shortcuts or tasks specific to the current project.
+    # For example, to create, migrate and run the seeds file at once:
+    #
+    #     $ mix ecto.setup
+    #
+    # See the documentation for `Mix` for more info on aliases.
+    defp aliases do
         []
     end
 end
