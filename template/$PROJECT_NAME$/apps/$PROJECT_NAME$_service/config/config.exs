@@ -2,6 +2,14 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
+<%= if @ecto do %>
+config :<%= @project_name %>_service,
+    ecto_repos: [<%= @project_name_camel_case %>.Service.Repo]
+
+# Import environment specific config. This must remain at the bottom
+# of this file so it overrides the configuration defined above.
+import_config "#{Mix.env}.exs"
+<% else %>
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
 # file won't be loaded nor affect the parent project. For this reason,
@@ -28,3 +36,4 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
+<% end %>

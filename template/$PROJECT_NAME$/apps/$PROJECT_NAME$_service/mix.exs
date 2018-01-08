@@ -48,7 +48,16 @@ defmodule <%= @project_name_camel_case %>.Service.Mixfile do
     # Type "mix help deps" for more examples and options
     defp deps(false), do: deps(true) ++ []
     defp deps(true) do
+        <%= if Enum.any?([@ecto]) do %>
+        [
+            <%= if @ecto do %>
+            { :ecto, "~> 2.1" },
+            { :postgrex, "~> 0.13.2" }
+            <% end %>
+        ]
+        <% else %>
         []
+        <% end %>
     end
 
     # Aliases are shortcuts or tasks specific to the current project.
