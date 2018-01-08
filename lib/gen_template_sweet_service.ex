@@ -5,5 +5,7 @@ defmodule Mix.Gen.Template.SweetService do
         name:       :sweet_service,
         short_desc: "Template for creating interfaceable services",
         source_dir: "../template",
-        options: []
+        options: [
+            dialyzer: []
+        ]
 end

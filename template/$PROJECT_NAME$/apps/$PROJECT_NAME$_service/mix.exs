@@ -14,7 +14,8 @@ defmodule <%= @project_name_camel_case %>.Service.Mixfile do
             build_embedded: Mix.env == :prod,
             start_permanent: Mix.env == :prod,
             aliases: aliases(),
-            deps: deps(Mix.Project.umbrella?)
+            deps: deps(Mix.Project.umbrella?)<%= if @dialyzer do %>,
+            dialyzer: [plt_add_deps: :transitive]<% end %>
         ]
     end
 

@@ -12,7 +12,8 @@ defmodule <%= @project_name_camel_case %>.API.Mixfile do
             elixir: "~> <%= Version.parse!(@elixir_version).major %>.<%= Version.parse!(@elixir_version).minor %>",
             build_embedded: Mix.env == :prod,
             start_permanent: Mix.env == :prod,
-            deps: deps(Mix.Project.umbrella?)
+            deps: deps(Mix.Project.umbrella?)<%= if @dialyzer do %>,
+            dialyzer: [plt_add_deps: :transitive]<% end %>
         ]
     end
 
