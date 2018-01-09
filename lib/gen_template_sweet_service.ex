@@ -7,6 +7,7 @@ defmodule Mix.Gen.Template.SweetService do
         source_dir: "../template",
         options: [
             dialyzer: [],
-            ecto: []
+            ecto: [],
+            defecto: []
         ]
 end

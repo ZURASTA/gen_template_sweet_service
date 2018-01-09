@@ -11,6 +11,9 @@ defmodule <%= @project_name_camel_case %>.Service.Case do
             import Ecto
             import Ecto.Changeset
             import Ecto.Query
+            <%= if @defecto do %>
+            use Defecto, repo: <%= @project_name_camel_case %>.Service.Repo
+            <% end %>
         end
     end
 
