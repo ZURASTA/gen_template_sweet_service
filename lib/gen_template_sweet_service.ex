@@ -8,6 +8,7 @@ defmodule Mix.Gen.Template.SweetService do
         options: [
             dialyzer: [],
             ecto: [],
-            defecto: []
+            defecto: [],
+            protecto: []
         ]
 end

@@ -52,9 +52,9 @@ defmodule <%= @project_name_camel_case %>.Service.Mixfile do
         [
             <%= if @ecto do %>
             { :ecto, "~> 2.1" },
-            { :postgrex, "~> 0.13.2" }<%= if @defecto do %>,
-            { :defecto, github: "ScrimpyCat/Defecto", only: :test }
-            <% end %>
+            { :postgrex, "~> 0.13.2" }<%= if @protecto do %>,
+            { :protecto, github: "ScrimpyCat/Protecto" }<% end %><%= if @defecto do %>,
+            { :defecto, github: "ScrimpyCat/Defecto", only: :test }<% end %>
             <% end %>
         ]
         <% else %>
