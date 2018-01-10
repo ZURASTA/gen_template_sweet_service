@@ -14,7 +14,7 @@ defmodule <%= @project_name_camel_case %>.Service.Mixfile do
             build_embedded: Mix.env == :prod,
             start_permanent: Mix.env == :prod,
             aliases: aliases(),
-            deps: deps(Mix.Project.umbrella?)<%= if @dialyzer do %>,
+            deps: deps(<%= if @sibling_deps do %>Mix.Project.umbrella?<% end %>)<%= if @dialyzer do %>,
             dialyzer: [plt_add_deps: :transitive]<% end %>
         ]
     end
@@ -46,8 +46,8 @@ defmodule <%= @project_name_camel_case %>.Service.Mixfile do
     #   {:my_app, in_umbrella: true}
     #
     # Type "mix help deps" for more examples and options
-    defp deps(false), do: deps(true) ++ []
-    defp deps(true) do
+    <%= if @sibling_deps do %>defp deps(false), do: deps(true) ++ []
+    defp deps(true) do<% else %>defp deps do<% end %>
         <%= if Enum.any?([@ecto]) do %>
         [
             <%= if @ecto do %>
