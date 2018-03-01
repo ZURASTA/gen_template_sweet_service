@@ -10,6 +10,7 @@ defmodule Mix.Gen.Template.SweetService do
             sibling_deps: [],
             ecto: [],
             defecto: [],
-            protecto: []
+            protecto: [],
+            swarm: []
         ]
 end
