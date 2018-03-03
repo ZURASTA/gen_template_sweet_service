@@ -11,6 +11,7 @@ defmodule Mix.Gen.Template.SweetService do
             ecto: [],
             defecto: [],
             protecto: [],
-            swarm: []
+            swarm: [],
+            docs: []
         ]
 end

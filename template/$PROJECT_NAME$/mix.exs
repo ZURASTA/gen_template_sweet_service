@@ -6,7 +6,15 @@ defmodule <%= @project_name_camel_case %>.Mixfile do
             apps_path: "apps",
             build_embedded: Mix.env == :prod,
             start_permanent: Mix.env == :prod,
-            deps: deps()
+            deps: deps()<%= if @dialyzer do %>,
+            dialyzer: [plt_add_deps: :transitive]<% end %><%= if @docs do %>,
+            name: "<%= @project_name_camel_case %>",
+            docs: [
+                main: "<%= @project_name %>",
+                extras: [
+                    "README.md": [filename: "<%= @project_name %>", title: "<%= @project_name_camel_case %>"]
+                ]
+            ]<% end %>
         ]
     end
 
@@ -23,6 +31,14 @@ defmodule <%= @project_name_camel_case %>.Mixfile do
     # Dependencies listed here are available only for this project
     # and cannot be accessed from applications inside the apps folder
     defp deps do
+        <%= if Enum.any?([@docs]) do %>
+        [
+            <%= if @docs do %>
+            { :ex_doc, "~> 0.18", only: :dev, runtime: false }
+            <% end %>
+        ]
+        <% else %>
         []
+        <% end %>
     end
 end
