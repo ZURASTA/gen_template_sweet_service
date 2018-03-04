@@ -13,6 +13,8 @@ defmodule Mix.Gen.Template.SweetService do
             protecto: [default: false],
             swarm: [default: false],
             docs: [default: false],
-            blueprint: [default: false]
+            blueprint: [default: false],
+            org: [takes: "name"],
+            github: [default: false]
         ]
 end

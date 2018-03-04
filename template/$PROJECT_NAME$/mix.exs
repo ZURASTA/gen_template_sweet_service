@@ -8,7 +8,8 @@ defmodule <%= @project_name_camel_case %>.Mixfile do
             start_permanent: Mix.env == :prod,
             deps: deps()<%= if @dialyzer do %>,
             dialyzer: [plt_add_deps: :transitive]<% end %><%= if @docs do %>,
-            name: "<%= @project_name_camel_case %>",
+            name: "<%= @project_name_camel_case %>",<%= if @github and @org do %>
+            source_url: "https://github.com/<%= @org %>/<%= @project_name %>",<% end %>
             docs: [
                 main: "<%= @project_name %>",
                 extras: [
