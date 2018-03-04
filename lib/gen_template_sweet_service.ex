@@ -6,13 +6,13 @@ defmodule Mix.Gen.Template.SweetService do
         short_desc: "Template for creating interfaceable services",
         source_dir: "../template",
         options: [
-            dialyzer: [],
-            sibling_deps: [],
-            ecto: [],
-            defecto: [],
-            protecto: [],
-            swarm: [],
-            docs: [],
-            blueprint: []
+            dialyzer: [default: false],
+            sibling_deps: [default: false],
+            ecto: [default: false],
+            defecto: [default: false],
+            protecto: [default: false],
+            swarm: [default: false],
+            docs: [default: false],
+            blueprint: [default: false]
         ]
 end
