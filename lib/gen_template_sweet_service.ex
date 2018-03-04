@@ -12,6 +12,7 @@ defmodule Mix.Gen.Template.SweetService do
             defecto: [],
             protecto: [],
             swarm: [],
-            docs: []
+            docs: [],
+            blueprint: []
         ]
 end

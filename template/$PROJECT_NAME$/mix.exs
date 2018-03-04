@@ -12,7 +12,8 @@ defmodule <%= @project_name_camel_case %>.Mixfile do
             docs: [
                 main: "<%= @project_name %>",
                 extras: [
-                    "README.md": [filename: "<%= @project_name %>", title: "<%= @project_name_camel_case %>"]
+                    "README.md": [filename: "<%= @project_name %>", title: "<%= @project_name_camel_case %>"]<%= if @blueprint do %>,
+                    "overview.md": [filename: "overview", title: "Overview"]<% end %>
                 ]
             ]<% end %>
         ]
@@ -34,11 +35,29 @@ defmodule <%= @project_name_camel_case %>.Mixfile do
         <%= if Enum.any?([@docs]) do %>
         [
             <%= if @docs do %>
-            { :ex_doc, "~> 0.18", only: :dev, runtime: false }
+            { :ex_doc, "~> 0.18", only: :dev, runtime: false }<%= if @blueprint do %>,
+            { :simple_markdown, "~> 0.5.2", only: :dev, runtime: false },
+            { :ex_doc_simple_markdown, "~> 0.2.1", only: :dev, runtime: false },
+            { :simple_markdown_extension_blueprint, "~> 0.2", only: :dev, runtime: false },
+            { :simple_markdown_extension_highlight_js, "~> 0.1.0", only: :dev, runtime: false },
+            { :blueprint, "~> 0.3.1", only: :dev, runtime: false }<% end %>
             <% end %>
         ]
         <% else %>
         []
         <% end %>
     end
+    <%= if @docs and @blueprint do %>
+
+    defp aliases do
+        [docs: &build_docs/1]
+    end
+
+    defp build_docs(_) do
+        System.cmd("mix", ["compile"], env: [{ "MIX_ENV", "prod" }])
+
+        Mix.Tasks.Compile.run([])
+        Mix.Tasks.Docs.run([])
+    end
+    <% end %>
 end
