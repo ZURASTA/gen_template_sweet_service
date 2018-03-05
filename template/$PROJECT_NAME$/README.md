@@ -1,4 +1,8 @@
 # <%= @project_name_camel_case %>
+<%= if @waffle and @org do %>
+
+[![Stories in Ready](https://badge.waffle.io/<%= @org %>/<%= @project_name %>.png?label=ready&title=Ready)](https://waffle.io/<%= @org %>/<%= @project_name %>?utm_source=badge)
+<% end %>
 
 **TODO: Add description**
 
