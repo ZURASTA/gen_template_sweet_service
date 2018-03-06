@@ -1,8 +1,8 @@
 # <%= @project_name_camel_case %>
-<%= if @waffle and @org do %>
-
-[![Stories in Ready](https://badge.waffle.io/<%= @org %>/<%= @project_name %>.png?label=ready&title=Ready)](https://waffle.io/<%= @org %>/<%= @project_name %>?utm_source=badge)
-<% end %>
+<%= if @org do %>
+<%= if @waffle do %>
+[![Stories in Ready](https://badge.waffle.io/<%= @org %>/<%= @project_name %>.png?label=ready&title=Ready)](https://waffle.io/<%= @org %>/<%= @project_name %>?utm_source=badge)<% end %><%= if @ci do %>
+[![CircleCI](https://circleci.com/gh/<%= @org %>/<%= @project_name %>.svg?style=svg)](https://circleci.com/gh/<%= @org %>/<%= @project_name %>)<% end %><% end %>
 
 **TODO: Add description**
 

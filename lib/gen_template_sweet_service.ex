@@ -16,6 +16,7 @@ defmodule Mix.Gen.Template.SweetService do
             blueprint: [default: false],
             org: [takes: "name"],
             github: [default: false],
-            waffle: [default: false]
+            waffle: [default: false],
+            ci: [default: false]
         ]
 end
