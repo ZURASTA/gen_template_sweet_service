@@ -32,9 +32,7 @@ defmodule <%= @project_name_camel_case %>.Service do
         setup_mode = args[:setup_mode] || :auto
 
         if setup_mode == :auto do
-            if Mix.env == :test do
-                <%= @project_name_camel_case %>.Service.Repo.DB.drop()
-            end
+            prepare_db()
             <%= @project_name_camel_case %>.Service.Repo.DB.create()
         end
 
@@ -51,6 +49,12 @@ defmodule <%= @project_name_camel_case %>.Service do
         end
 
         supervisor
+    end
+
+    if Mix.env == :test do
+        defp prepare_db(), do: <%= @project_name_camel_case %>.Service.Repo.DB.drop()
+    else
+        defp prepare_db(), do: :ok
     end
 end
 <% else %>
