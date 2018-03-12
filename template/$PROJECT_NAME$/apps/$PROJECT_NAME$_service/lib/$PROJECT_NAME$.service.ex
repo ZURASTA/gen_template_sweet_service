@@ -71,6 +71,9 @@ defmodule <%= @project_name_camel_case %>.Service do
 
     use Application
 
+    @doc """
+      Start the service application.
+    """
     def start(_type, _args) do
         import Supervisor.Spec, warn: false
 
